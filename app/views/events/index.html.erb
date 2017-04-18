@@ -1,14 +1,14 @@
 <div ng-app="app">
   <div ng-controller="eventsCtrl" ng-init="setup()">
     <h3>Add an event</h3>
-      <input ng-model="newTitleText">
-      <input ng-model="newDescriptionText">
-      <input ng-model="newLocationText">
-      <input ng-model="newStartTimeText" type="time"> 
-      <input ng-model="newEndTimeText" type="time">
-      <input ng-model="newDateText" type="date">
+      <label>Title:<input ng-model="newTitleText" type="text"></label>
+      <label>Description:<input ng-model="newDescriptionText" type="text"></label>
+      <label>Location:<input ng-model="newLocationText" type="text"></label>
+      <label>Start Time:<input ng-model="newStartTimeText" type="time"></label> 
+      <label>End Time:<input ng-model="newEndTimeText" type="time"></label>
+      <label>Date:<input ng-model="newDateText" type="date"></label>
       <button ng-click="addEvent(newTitleText, newDescriptionText, newLocationText, newStartTimeText, newEndTimeText, newDateText)">Add event</button>
-
+    <h2>Events</h2>
     <div ng-repeat="event in events">
       <p>{{  event.title  }}</p>
     </div>

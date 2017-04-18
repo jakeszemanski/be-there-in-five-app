@@ -1,11 +1,11 @@
 (function() {
   "use strict";
 
-  angular.module("app").controller('eventsCtrl', function($scope, $http) {
+  angular.module("app").controller("eventsCtrl", function($scope, $http) {
     $scope.setup = function() {
-      $http.get('api/v1/events').then(function(response) {
+      $http.get("/api/v1/events").then(function(response) {
         $scope.events = response.data;
-        $scope.orderAttribute = 'date';
+        $scope.orderAttribute = "date";
         $scope.isOrderDescending = false;
       });
     };
@@ -14,15 +14,22 @@
         title: inputTitle,
         description: inputDescription,
         location: inputLocation,
-        startTime: inputStartTime,
-        endTime: inputEndTime,
+        start: inputStartTime,
+        end: inputEndTime,
         date: inputDate
       };
-      $http.post('api/v1/events', params).then(function(response) {
-        $scope.messages.push(response.data);
-        $scope.newDescriptionText = '';
-        console.log('hello');
+      $http.post("/api/v1/events", params).then(function(response) {
+        $scope.events.push(response.data);
+      }, function(error) {
+        $scope.errors = error.data.errors;
       });
+      $scope.events.push(params);
+      $scope.newTitleText = '';
+      $scope.newDescriptionText = '';
+      $scope.newLocationText = '';
+      $scope.newStartTimeText = '';
+      $scope.newEndTimeText = '';
+      $scope.newDateText = '';
     };
   });
 })();
